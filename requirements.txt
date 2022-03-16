@@ -1,13 +1,6 @@
 #This should be split up
 
 #Base
-matplotlib
-scipy
-ipywidgets
-ipyfilechooser
-python-dotenv
-pyodm==1.5.9
-git+https://github.com/AuScalableDroneCloud/jupyter_oauth2.git
 
 #Fracture detection
 opencv-contrib-python-headless
