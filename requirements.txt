@@ -1,10 +1,6 @@
 #This should be split up
 
-#Base
-
 #Fracture detection
-opencv-contrib-python-headless
-#opencv-python
 PyCoShREM
 
 #Experimental / ODMax
