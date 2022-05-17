@@ -7,6 +7,7 @@ PyCoShREM
 GEOS
 ODMax
 lavavu-osmesa
+git+https://github.com/AuScalableDroneCloud/jupyter_oauth2.git@6f8c2e444c6b5d69f97a6a33d1b784d3fd6397fc
 
 #WheatHub
 rasterio
