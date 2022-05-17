@@ -8,3 +8,6 @@ GEOS
 ODMax
 lavavu-osmesa
 
+#WheatHub
+rasterio
+rasterstats
