@@ -32,3 +32,20 @@ if not "JUPYTER_OAUTH2_CLIENT_ID" in os.environ:
 
 auth.setup()
 
+
+#Utility functions
+def download(project, task, filename):
+    """
+    Call WebODM API endpoint to download a file
+
+    Parameters
+    ----------
+    project: int
+        project ID
+    task: str
+        task ID
+    filename: str
+        asset filename to download
+    """
+    auth.download('/projects/{PID}/tasks/{TID}/download/{ASSET}').format(PID=project, TID=task, ASSET=filename)
+
