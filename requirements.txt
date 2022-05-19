@@ -1,13 +1,16 @@
-#This should be split up
+# Move these packages to base docker images
+# when finished testing/development
 
-#Fracture detection
+# Fracture detection
 PyCoShREM
 
-#Experimental / ODMax
+# Experimental / ODMax
 GEOS
 ODMax
-lavavu-osmesa
+#lavavu-osmesa
+jupytext
+voila
 
-#WheatHub
+# WheatHub
 rasterio
 rasterstats
