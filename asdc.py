@@ -47,5 +47,7 @@ def download(project, task, filename):
     filename: str
         asset filename to download
     """
-    auth.download('/projects/{PID}/tasks/{TID}/download/{ASSET}').format(PID=project, TID=task, ASSET=filename)
+    auth.download('/projects/{PID}/tasks/{TID}/download/{ASSET}'.format(PID=project, TID=task, ASSET=filename))
+
+
 
