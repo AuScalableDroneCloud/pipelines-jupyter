@@ -1,4 +1,7 @@
 #Curated pipelines list
+#TODO: wheathub, coastal
+about: "ASDC Curated Pipelines"
+logo: "https://images.squarespace-cdn.com/content/v1/601242f8b830696278e377c7/1616029863342-6TN6P0LNLES84JXGPRA4/ASDC+Identity-01-02.png?format=1500w"
 pipelines:
   - name: "Image Resizer"
     tag: "resizer"
@@ -28,3 +31,4 @@ pipelines:
     source: 'experiments'
     image: 'ghcr.io/auscalabledronecloud/pipeline-exp:11cd163-86'
     entrypoint: "Experiments.ipynb"
+
