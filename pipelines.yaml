@@ -1,0 +1,30 @@
+#Curated pipelines list
+pipelines:
+  - name: "Image Resizer"
+    tag: "resizer"
+    description: "Simple example pipeline that resizes images from source task and creates a new task with the modified source images"
+    maintainer: "Owen Kaluza"
+    source: 'resizer'
+    image: 'jupyter/minimal-notebook:hub-3.0.0'
+    entrypoint: "Resizer.py"
+  - name: "Fracture Detection"
+    tag: "fd"
+    description: "Structural Geology : Fracture Detection - Workflow for fracture detection with Complex Shearlet Transform"
+    maintainer: "Ulrich Kelka"
+    source: 'https://github.com/AuScalableDroneCloud/pipeline-fracture'
+    image: 'ghcr.io/auscalabledronecloud/pipeline-base:11cd163-86'
+    entrypoint: "Jupyter/ASDC_CoSheRem.ipynb"
+  - name: "ODMax"
+    tag: "odmax"
+    description: "ODMax: 3D point clouds and meshes from 360 degree videos with ODMax"
+    maintainer: "Tim Brown"
+    source: 'odmax'
+    image: 'ghcr.io/auscalabledronecloud/pipeline-exp:11cd163-86'    
+    entrypoint: "odmax_webodm_asdc.ipynb"
+  - name: "Experiments"
+    tag: "experiments"
+    description: "Pipeline development experiments, used to test new features for ASDC pipelines"
+    maintainer: "Owen Kaluza"
+    source: 'experiments'
+    image: 'ghcr.io/auscalabledronecloud/pipeline-exp:11cd163-86'
+    entrypoint: "Experiments.ipynb"
