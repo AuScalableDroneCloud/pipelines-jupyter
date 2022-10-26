@@ -1,5 +1,10 @@
 #Curated pipelines list
 #Icons: https://fontawesome.com/v5/search?m=free
+#Image: can't run custom images, would be insecure so must be one of prebuilt images:
+#default: jupyter/minimal-notebook:hub-3.0.0
+#base: ghcr.io/auscalabledronecloud/pipeline-base
+#fd: ghcr.io/auscalabledronecloud/pipeline-fd
+#exp: ghcr.io/auscalabledronecloud/pipeline-exp
 #TODO: wheathub, coastal
 about: "ASDC Curated Pipelines"
 logo: "https://images.squarespace-cdn.com/content/v1/601242f8b830696278e377c7/1616029863342-6TN6P0LNLES84JXGPRA4/ASDC+Identity-01-02.png?format=1500w"
@@ -9,7 +14,7 @@ pipelines:
     description: "Simple example pipeline that resizes images from source task and creates a new task with the modified source images"
     maintainer: "Owen Kaluza"
     source: 'resizer'
-    image: 'jupyter/minimal-notebook:hub-3.0.0'
+    image: 'default'
     entrypoint: "Resizer.py"
     icon: "fas fa-images"
   - name: "Fracture Detection"
@@ -17,7 +22,7 @@ pipelines:
     description: "Structural Geology : Fracture Detection - Workflow for fracture detection with Complex Shearlet Transform"
     maintainer: "Ulrich Kelka"
     source: 'https://github.com/AuScalableDroneCloud/pipeline-fracture'
-    image: 'ghcr.io/auscalabledronecloud/pipeline-base:11cd163-86'
+    image: 'base'
     entrypoint: "Jupyter/ASDC_CoSheRem.ipynb"
     icon: "fas fa-mountain"
   - name: "ODMax"
@@ -25,7 +30,7 @@ pipelines:
     description: "ODMax: 3D point clouds and meshes from 360 degree videos with ODMax"
     maintainer: "Tim Brown"
     source: 'odmax'
-    image: 'ghcr.io/auscalabledronecloud/pipeline-exp:11cd163-86'    
+    image: 'exp'    
     entrypoint: "odmax_webodm_asdc.ipynb"
     icon: "fas fa-video"
   - name: "Experiments"
@@ -33,7 +38,7 @@ pipelines:
     description: "Pipeline development experiments, used to test new features for ASDC pipelines"
     maintainer: "Owen Kaluza"
     source: 'experiments'
-    image: 'ghcr.io/auscalabledronecloud/pipeline-exp:11cd163-86'
+    image: 'exp'    
     entrypoint: "Experiments.ipynb"
     icon: "fas fa-flask"
 
