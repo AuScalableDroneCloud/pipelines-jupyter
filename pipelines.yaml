@@ -14,7 +14,7 @@ pipelines:
     description: "Simple example pipeline that resizes images from source task and creates a new task with the modified source images"
     maintainer: "Owen Kaluza"
     source: 'resizer'
-    image: 'default'
+    image: 'base'
     entrypoint: "Resizer.py"
     icon: "fas fa-images"
   - name: "Fracture Detection"
@@ -22,7 +22,7 @@ pipelines:
     description: "Structural Geology : Fracture Detection - Workflow for fracture detection with Complex Shearlet Transform"
     maintainer: "Ulrich Kelka"
     source: 'https://github.com/AuScalableDroneCloud/pipeline-fracture'
-    image: 'base'
+    image: 'gpu'
     entrypoint: "Jupyter/ASDC_CoSheRem.ipynb"
     icon: "fas fa-mountain"
   - name: "ODMax"
@@ -30,15 +30,15 @@ pipelines:
     description: "ODMax: 3D point clouds and meshes from 360 degree videos with ODMax"
     maintainer: "Tim Brown"
     source: 'odmax'
-    image: 'exp'    
+    image: 'base'
     entrypoint: "odmax_webodm_asdc.ipynb"
     icon: "fas fa-video"
-  - name: "Experiments"
-    tag: "experiments"
-    description: "Pipeline development experiments, used to test new features for ASDC pipelines"
+  - name: "ML experiments"
+    tag: "ml"
+    description: "Pipeline development ML experiments, used to test new features for ASDC pipelines, GPU support included and required"
     maintainer: "Owen Kaluza"
-    source: 'experiments'
-    image: 'exp'    
+    source: 'ml'
+    image: 'ml'
     entrypoint: "Experiments.ipynb"
     icon: "fas fa-flask"
 
