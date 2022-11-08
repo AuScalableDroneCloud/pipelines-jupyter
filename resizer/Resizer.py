@@ -17,7 +17,7 @@ resize_to
 print(asdc.selected)
 project_id = asdc.selected['project']
 task_id = asdc.selected['task']
-task_name = asdc.task_dict[task_id]
+task_name = asdc.task_dict[task_id]['name']
 
 # +
 #Create a new task, "partial" enabled to allow later upload of images
