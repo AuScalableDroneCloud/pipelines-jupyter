@@ -171,7 +171,7 @@ for i in img_list:
     #def upload(url, filepath, block_size=8192, throw=False, prefix=auth.settings["token_prefix"], **kwargs):
     #/projects/{project_pk}/tasks/{id}/upload/
     work.set_description(f"Uploading {filename}")
-    asdc.upload(f"/projects/{project_id}/tasks/{new_task_id}/upload/", filename)
+    asdc.upload(f"/projects/{project_id}/tasks/{new_task_id}/upload/", filename) #TODO: Allow disabling progress so can use single prog bar
     os.remove(filename) #Delete the file
     #break
 
@@ -181,7 +181,7 @@ for i in img_list:
 #res = odm_requests.post_commit(url, token, project_id, task_id).json()
 #print(res)
 #url = f"{base_url}/api/projects/{project_id}/tasks/{task_id}/commit/"
-res = asdc.call_api(f"/projects/{project_id}/tasks/{new_task_id}/commit/", data={}) #"test":True}) #TODO: allow POST without data provided
+res = asdc.call_api(f"/projects/{project_id}/tasks/{new_task_id}/commit/", data={"Test" : True}) #"test":True}) #TODO: allow POST without data provided
 print(res)
 
 
