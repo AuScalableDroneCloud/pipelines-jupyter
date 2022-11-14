@@ -5,52 +5,32 @@
 # - Resizes the image to the specified size
 # - Uploads the resized images to a new task
 
+# ### Authenticate and get parameters
+
 import asdc
-await asdc.connect()
+await asdc.connect(mode='iframe')
 asdc.task_select()
 from ipywidgets import widgets
 resize_to = widgets.IntText(value=2048, description='Resize to:')
 resize_to
 
 
-#Get selections
+# ### Get selections
+
 print(asdc.selected)
 project_id = asdc.selected['project']
 task_id = asdc.selected['task']
 task_name = asdc.task_dict[task_id]['name']
 
-# +
-#Create a new task, "partial" enabled to allow later upload of images
-#https://github.com/localdevices/odk2odm/blob/main/odk2odm/odm_requests.py
-import json
-options_list = {
-    "auto-boundary": True,
-    "dsm": True
-}
-# convert into list with "name" / "value" dictionaries, suitable for ODM
-options = [{"name": k, "value": v} for k, v in options_list.items()]
-#print("OPTIONS",options)
-data = {
-    "partial": True,
-    "name": f"{task_name} - Resized {resize_to.value}",
-    "options": options
-}
-#def post_task(base_url, token, project_id, data={}, files=[]):
-#from odk2odm import odm_requests
-#url = asdc.auth.settings["api_audience"] + f"/projects/{project_id}/tasks/"
-#print(url)
-#res = odm_requests.post_task(url, asdc.auth.access_token, project_id, data=data)
+# ### Create destination task for resized images
 
-res = asdc.call_api(f"/projects/{project_id}/tasks/", data=data)
-print(res)
-task = res.json()
-print(task)
-new_task_id = res.json()["id"]
+new_task_id = asdc.new_task(f"{task_name} - Resized {resize_to.value}")
 
+
+# ### Get selected task image list
 
 # +
 img_list = asdc.call_api(f"/projects/{project_id}/tasks/{task_id}/images").json()
-#https://dev.asdc.cloud.edu.au/api/projects/7/tasks/921edd3b-df10-4881-8175-dab92e4b5f05/images/download
 
 #Get the image list from mounted dir instead
 #import os
@@ -58,9 +38,11 @@ img_list = asdc.call_api(f"/projects/{project_id}/tasks/{task_id}/images").json(
 #print(arr)
 # -
 
-print(img_list)
+print(img_list[0: min(20, len(img_list))])
 
-#Resize function from WebODM/app/models/task,py
+# ### Define resize function
+# from WebODM/app/models/task,py
+
 import logging
 logger = logging.getLogger('app.logger')
 import re
@@ -153,29 +135,23 @@ def resize_image(image_path, resize_to, done=None):
     return retval
 
 
+# ### Iterate through the image list
+# - Download
+# - Resize
+# - Upload
 
 from tqdm.notebook import tqdm
 work = tqdm(len(img_list), leave=True)
-for i in img_list:
-    filename = asdc.download(f"/projects/{project_id}/tasks/{task_id}/images/download/{i}")
-    #print(dl)
+for i in tqdm(img_list):
+    filename = asdc.download(f"/projects/{project_id}/tasks/{task_id}/images/download/{i}", progress=False)
     resize_image(filename, resize_to.value)
-    
-    #res = odm_requests.get_thumbnail(url, token, project_id, task_id, filename=filename)
-    #if res.status_code == 200:
-    #    work.set_description(f"File {filename} already exists on ODM task, skipping...")
-    #else:
-    #work.set_description(f"Uploading {filename}")
-    # add field to uploads of tasks. In the post below, the actual uploading of one face of one frame is occurring
-    #res = odm_requests.post_upload(url, token, project_id, task_id, fields)  
-    #def upload(url, filepath, block_size=8192, throw=False, prefix=auth.settings["token_prefix"], **kwargs):
-    #/projects/{project_pk}/tasks/{id}/upload/
     work.set_description(f"Uploading {filename}")
-    asdc.upload(f"/projects/{project_id}/tasks/{new_task_id}/upload/", filename) #TODO: Allow disabling progress so can use single prog bar
+    asdc.upload(f"/projects/{project_id}/tasks/{new_task_id}/upload/", filename, progress=False)
     os.remove(filename) #Delete the file
     #break
 
 
+# ### Commit
 # We can now commit the task so that it'll process and run
 
 #res = odm_requests.post_commit(url, token, project_id, task_id).json()
