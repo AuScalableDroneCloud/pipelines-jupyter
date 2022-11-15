@@ -25,7 +25,7 @@ pipelines:
     maintainer: "Ulrich Kelka"
     source: 'https://github.com/AuScalableDroneCloud/pipeline-fracture'
     image: 'gpu'
-    entrypoint: "Jupyter/ASDC_CoSheRem.ipynb"
+    entrypoint: "Jupyter/ASDC_CoSheRem_notebook.py"
     icon: "fas fa-mountain"
     inputs: "project,task,orthophoto"
   - name: "ODMax"
