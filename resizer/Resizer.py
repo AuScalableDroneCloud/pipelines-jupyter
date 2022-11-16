@@ -142,14 +142,14 @@ def resize_image(image_path, resize_to, done=None):
 # - Upload
 
 from tqdm.notebook import tqdm
-work = tqdm(len(img_list), leave=True)
-for i in tqdm(img_list):
+work = tqdm(img_list, leave=True)
+for i in work:
+    work.set_description(f"Downloading...")
     filename = asdc.download(f"/projects/{project_id}/tasks/{task_id}/images/download/{i}", progress=False)
     resize_image(filename, resize_to.value)
     work.set_description(f"Uploading {filename}")
     asdc.upload(f"/projects/{project_id}/tasks/{new_task_id}/upload/", filename, progress=False)
     os.remove(filename) #Delete the file
-    #break
 
 
 # ### Commit
