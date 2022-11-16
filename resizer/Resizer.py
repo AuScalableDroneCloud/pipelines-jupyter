@@ -47,6 +47,7 @@ print(img_list[0: min(20, len(img_list))])
 # - Upload
 
 from tqdm.notebook import tqdm
+import os
 work = tqdm(img_list, leave=True)
 for i in work:
     work.set_description(f"Downloading...")
