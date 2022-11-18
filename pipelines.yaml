@@ -34,7 +34,7 @@ pipelines:
     maintainer: "Tim Brown"
     source: 'odmax'
     image: 'base'
-    entrypoint: "odmax_webodm_asdc.ipynb"
+    entrypoint: "odmax_webodm_asdc.py"
     icon: "fas fa-video"
     inputs: "project"
   - name: "ML experiments"
@@ -43,6 +43,6 @@ pipelines:
     maintainer: "Owen Kaluza"
     source: 'ml'
     image: 'ml'
-    entrypoint: "Experiments.ipynb"
+    entrypoint: "Experiments.py"
     icon: "fas fa-flask"
 
