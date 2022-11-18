@@ -49,7 +49,7 @@ src_task_id = asdc.selected['task']
 file_list = asdc.call_api(f'/projects/{project_id}/tasks/{src_task_id}/assets/files.json').json()
 
 #Get the first custom asset
-custom_assets = file_list["custom_assets"].keys()
+custom_assets = list(file_list["custom_assets"].keys())
 if len(custom_assets) == 0:
     print("Source task should contain the source video file as a custom asset upload!")
     assert(False)
