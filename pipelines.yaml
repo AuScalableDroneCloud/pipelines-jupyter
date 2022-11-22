@@ -24,7 +24,7 @@ pipelines:
     description: "Structural Geology : Fracture Detection - Workflow for fracture detection with Complex Shearlet Transform"
     maintainer: "Ulrich Kelka"
     source: 'https://github.com/AuScalableDroneCloud/pipeline-fracture'
-    image: 'gpu'
+    image: 'base' #'gpu'
     entrypoint: "Jupyter/ASDC_CoSheRem_notebook.py"
     icon: "fas fa-mountain"
     inputs: "project,task,orthophoto"
