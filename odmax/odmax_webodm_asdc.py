@@ -62,7 +62,6 @@ video_file = asdc.download_asset(custom_assets[0])
 #
 # We also supply a list of options, that work well with ground-based datasets. For more information about the options available for WebODM tasks we refer to https://docs.opendronemap.org/
 
-# +
 # below we supply an extra option needed to work with spherical photos. The option with name "camera-lens" and 
 # value "spherical" is essential if you use spherical imagery such as 360 degree photos. The job will fail if 
 # you use a different (or default) camera-lens value.
@@ -71,27 +70,26 @@ options_list = {
     "dtm": True,
     "dsm": True,
     "feature-quality": "ultra",  # Set feature extraction quality. Higher quality generates better features, but requires more memory and takes longer
-    "matcher-distance": 20,  # Good for street level photography. Will be changed when OpenSfM eventually is updated and has better defaults
     "matcher-neighbors": 800,  # Good Necessary for street level photography. Will be changed when OpenSfM eventually is updated and has better defaults
     "mesh-octree-depth": 14,  # Memory and CPU intensive but much nicer detail in meshes
     "mesh-size": 400000,  # Memory intensive. Could probably be turned up louder
     "min-num-features": 24000,  # One of the more important options: it improves matching significantly in complicated scenes.
-    "pc-geometric": True,  # Cleans the final model a bit based on visibility tests
     "pc-quality": "ultra",  #Memory and CPU intensive but much nicer detail in point cloud
 }
 # convert into list with "name" / "value" dictionaries, suitable for ODM
-options = [{"name": k, "value": v} for k, v in options_list.items()]
-
+options = [{"name": k, "value": str(v).lower() if isinstance(v,bool) else v} for k, v in options_list.items()]
 data = {
     "partial": True,
     "name": "batch_1",
     "options": options
 }
 res = odm_requests.post_task(url, token, project_id, data=data)
-task = res.json()
-task_id = res.json()["id"]
-print(task)
-# -
+if res.status_code >= 300:
+    print("Error response: ", res.status_code, res.text)
+else:
+    task = res.json()
+    task_id = res.json()["id"]
+    print(f"Task created: {task['name']}, ID: {task_id}")
 
 # If everything went as normal, you should see information about the created task above. We create a `Video` object that we can extract frames with. Let's have a quick look at the geographical information too with the `.plot_gps` method.
 
