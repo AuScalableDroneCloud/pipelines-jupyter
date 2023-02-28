@@ -10,6 +10,15 @@
 about: "ASDC Curated Pipelines"
 logo: "https://images.squarespace-cdn.com/content/v1/601242f8b830696278e377c7/1616029863342-6TN6P0LNLES84JXGPRA4/ASDC+Identity-01-02.png?format=1500w"
 pipelines:
+  - name: "Development"
+    tag: "dev"
+    description: "Pipeline development, documentation and samples"
+    maintainer: "Owen Kaluza"
+    source: 'dev'
+    image: 'base'
+    entrypoint: "Intro.py"
+    icon: "fas fa-images"
+    inputs: "project,task,images"
   - name: "Image Resizer"
     tag: "resizer"
     description: "Simple example pipeline that resizes images from source task and creates a new task with the modified source images"
