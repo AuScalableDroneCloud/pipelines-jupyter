@@ -13,7 +13,6 @@
 # ---
 
 import asdc
-await asdc.connect()
 
 import torch
 
