@@ -27,7 +27,6 @@
 
 import asdc
 from odk2odm import odm_requests
-await asdc.connect()
 token = asdc.auth.access_token
 assert(token)
 url = asdc.settings['api_audience'][0:-4] #Strip /api for odm_requests

@@ -12,7 +12,6 @@ resize_to = widgets.IntText(value=2048, description='Resize to:')
 resize_to
 
 import asdc
-await asdc.connect(mode='iframe')
 asdc.task_select()
 
 
