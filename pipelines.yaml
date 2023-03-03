@@ -17,7 +17,7 @@ pipelines:
     source: 'dev'
     image: 'base'
     entrypoint: "Intro.py"
-    icon: "fas fa-images"
+    icon: "fas fa-laptop-code"
     inputs: "project,task,images"
   - name: "Image Resizer"
     tag: "resizer"
