@@ -45,17 +45,32 @@ print(img_list[0: min(20, len(img_list))])
 # - Resize
 # - Upload
 
+# - Download
+
 from tqdm.notebook import tqdm
 import os
 work = tqdm(img_list, leave=True)
 for i in work:
     work.set_description(f"Downloading...")
     filename = asdc.download(f"/projects/{project_id}/tasks/{task_id}/images/download/{i}", progress=False)
+
+# - Resize
+
+from tqdm.notebook import tqdm
+import os
+work = tqdm(img_list, leave=True)
+for filename in work:
     asdc.utils.resize_image(filename, resize_to.value)
+
+# - Upload
+
+from tqdm.notebook import tqdm
+import os
+work = tqdm(img_list, leave=True)
+for filename in work:
     work.set_description(f"Uploading {filename}")
     asdc.upload(f"/projects/{project_id}/tasks/{new_task_id}/upload/", filename, progress=False)
     os.remove(filename) #Delete the file
-
 
 # ### Commit
 # We can now commit the task so that it'll process and run
