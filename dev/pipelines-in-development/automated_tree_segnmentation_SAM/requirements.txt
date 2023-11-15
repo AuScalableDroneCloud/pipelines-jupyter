@@ -2,4 +2,4 @@ scikit-image
 matplotlib
 numpy
 pandas
-#DeepForest
+DeepForest
