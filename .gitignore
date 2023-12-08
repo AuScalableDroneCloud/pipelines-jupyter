@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+dev/pipelines-in-development/automated_tree_segnmentation_SAM/images/USLN-Doran-2022-02-11-DJI-M3-ZackSimpson-RGB-2023-04-17-- CROP.png
+dev/pipelines-in-development/automated_tree_segnmentation_SAM/USLN-Doran-2022-02-11-DJI-M3-ZackSimpson-RGB-2023-04-17-reprocess-w-high-res-orth.tif
