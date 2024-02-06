@@ -14,11 +14,14 @@ from ipywidgets import widgets
 asdc.task_select()
 
 
-print(asdc.selected)
 project_id = asdc.selected['project']
 task_id = asdc.selected['task']
 task_name = asdc.task_dict[task_id]['name']
 project_name = asdc.project_dict[str(project_id)]['name']  #NOTE: Project_ID is returned as a string in the project_dict
+print("Project Name:", project_name)
+print("Project ID:", project_id)
+print("Task Name:", task_name)
+print("Task ID:", task_id)
 
 # ### Get image list from selected task 
 
@@ -31,7 +34,7 @@ project_name = asdc.project_dict[str(project_id)]['name']  #NOTE: Project_ID is 
 # +
 img_list = asdc.call_api(f"/projects/{project_id}/tasks/{task_id}/images").json()
 
-#TEMP: shorten img_list to make the code run faster
+#TEMP for testing: shorten img_list to make the code run faster
 img_list = img_list[:10]
 
 
@@ -48,7 +51,7 @@ if not os.path.exists(task_data_folder_path):
 
 print("First 20 filenames: \n", img_list[0: min(20, len(img_list))])
 
-# ### Download images to the new local TEMP folder:
+# ### Create a new local TEMP folder and download images from ODM
 
 # - Download
 
@@ -93,16 +96,16 @@ for filename in work:
 # ***
 
 # ### Now we Upload the modified images to a new task
-# - Change the _"new_task_name"_ text to whatever you want to name the new task  
-#
-# - _**Important: this will fail if you only have read-only access to the task**_
+# #### NOTE: You must have read/write access to the Project or this will fail
+# - Change the text below to whatever you want to name the new task  
 
-new_task_name = (f"{task_name}| test-reupload-speed-2")
-new_task_id = asdc.new_task(new_task_name)
-print(new_task_id)
+new_task_name = (f"{task_name} | test-reupload-speed-2")
+print("Name of new task will be:\n", new_task_name)
 
 
 # +
+#Create new Task
+new_task_id = asdc.new_task(new_task_name)
 start_time = time.time()  # Start timing
 from tqdm import tqdm
 updated_img_list = [os.path.join(task_data_folder_path, filename) for filename in img_list]
