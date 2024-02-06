@@ -1,4 +1,4 @@
-# # Importing task files from ODM into Jupyter
+# # Importing task files from ODM into Jupyter then back to ODM in a new Task
 # - This notebook demonstrates how to download all the images from an existing Task (including a task that was started and failed)
 # - Images are download to a local folder named "TEMP-_your-task-name_"
 # - Once download the images can be processed however you choose (insert your code as needed)
@@ -18,7 +18,7 @@ print(asdc.selected)
 project_id = asdc.selected['project']
 task_id = asdc.selected['task']
 task_name = asdc.task_dict[task_id]['name']
-project_name = project_dict[str(project_id)]['name']  #NOTE: Project_ID is returned as a string in the project_dict
+project_name = asdc.project_dict[str(project_id)]['name']  #NOTE: Project_ID is returned as a string in the project_dict
 
 # ### Get image list from selected task 
 
@@ -32,7 +32,7 @@ project_name = project_dict[str(project_id)]['name']  #NOTE: Project_ID is retur
 img_list = asdc.call_api(f"/projects/{project_id}/tasks/{task_id}/images").json()
 
 #TEMP: shorten img_list to make the code run faster
-img_list = img_list[:50]
+img_list = img_list[:10]
 
 
 print("Total images:", len(img_list), "\n")
