@@ -1,0 +1,9 @@
+opencv-python-headless
+natsort
+scipy
+numpy
+pandas
+matplotlib
+seaborn
+rasterio
+
